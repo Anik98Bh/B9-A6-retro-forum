@@ -10,7 +10,7 @@
 
 </head>
 
-<body class="w-auto m-auto">
+<body class="w-full m-auto px-4">
     <header>
         <!-- nav section -->
         <div>
@@ -28,16 +28,16 @@
                             class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
                             <button class="btn btn-circle">
                                 <img src="./images/Frame (1).svg" alt="">
-                              </button>
+                            </button>
                             <button class="btn btn-circle">
                                 <img src="./images/Frame (2).svg" alt="">
-                              </button>
+                            </button>
                             <button class="btn btn-circle">
                                 <img src="./images/Frame (3).svg" alt="">
-                              </button>
+                            </button>
                             <button class="btn btn-circle">
                                 <img src="./images/Frame (4).svg" alt="">
-                              </button>
+                            </button>
                         </ul>
                     </div>
                     <a class="btn btn-ghost text-4xl font-bold text-[#12132D]">ReTro</a>
@@ -45,18 +45,26 @@
                 <div class="flex navbar-end gap-3">
                     <div class=" hidden lg:flex">
                         <ul class="menu menu-horizontal px-1 gap-2">
-                            <button class="btn btn-circle">
-                                <img src="./images/Frame (1).svg" alt="">
-                              </button>
-                            <button class="btn btn-circle">
-                                <img src="./images/Frame (2).svg" alt="">
-                              </button>
-                            <button class="btn btn-circle">
-                                <img src="./images/Frame (3).svg" alt="">
-                              </button>
-                            <button class="btn btn-circle">
-                                <img src="./images/Frame (4).svg" alt="">
-                              </button>
+                            <div class="tooltip tooltip-bottom" data-tip="home">
+                                <button class="btn btn-circle">
+                                    <img src="./images/Frame (1).svg" alt="">
+                                </button>
+                            </div>
+                            <div class="tooltip tooltip-bottom" data-tip="edit">
+                                <button class="btn btn-circle">
+                                    <img src="./images/Frame (2).svg" alt="">
+                                </button>
+                            </div>
+                            <div class="tooltip tooltip-bottom" data-tip="add">
+                                <button class="btn btn-circle">
+                                    <img src="./images/Frame (3).svg" alt="">
+                                </button>
+                            </div>
+                            <div class="tooltip tooltip-bottom" data-tip="more-info">
+                                <button class="btn btn-circle">
+                                    <img src="./images/Frame (4).svg" alt="">
+                                </button>
+                            </div>
                         </ul>
                     </div>
                     <div class="">
@@ -65,7 +73,45 @@
                 </div>
             </div>
         </div>
-
+        <!-- banner part -->
+        <div>
+            <div class="hero min-h-96 bg-[#12132D] rounded-3xl" style="background-image: url(./images/bgbanner.png);">
+                <div class="hero-overlay bg-opacity-15"></div>
+                <div class="hero-content text-center text-neutral-content">
+                    <div class="flex space-x-14">
+                        <div class="max-w-md text-start">
+                            <h1 class="mb-5 text-5xl font-bold">Welcome to the <span class="text-[#797DFC]">ReTro</span>
+                                Forum</h1>
+                            <p class="mb-5">Share your favorite opinion and win and wp <br> forum coffee mug!</p>
+                            <div class="w-96">
+                                <label class="input flex items-center  gap-2 rounded-3xl">
+                                    <input type="text" class="grow " placeholder="Search" />
+                                    <button class="badge bg-[#797DFC] p-5 text-white font-semibold">Search</button>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="bg-[#ffffff] rounded-3xl p-6 space-y-4">
+                            <div class="flex justify-between font-medium text-xl text-[#12132D] gap-6">
+                                <p>Registered Users</p>
+                                <p>01</p>
+                            </div>
+                            <div class="flex justify-between font-medium text-xl text-[#12132D] gap-6">
+                                <p>Forum</p>
+                                <p>05</p>
+                            </div>
+                            <div class="flex justify-between font-medium text-xl text-[#12132D] gap-6">
+                                <p>Topics</p>
+                                <p>01</p>
+                            </div>
+                            <div class="flex justify-between font-medium text-xl text-[#12132D] gap-6">
+                                <p>Replies</p>
+                                <p>01</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </header>
     <main>
 
