@@ -1,9 +1,22 @@
 const loadData = async () => {
-    const res = await fetch('https://openapi.programming-hero.com/api/retro-forum/posts');
+    const res = await fetch(`https://openapi.programming-hero.com/api/retro-forum/posts`);
+    // 
     const data = await res.json();
     const posts = data.posts;
     // console.log(posts)
     displayPost(posts)
+}
+
+const reloadData = async (searchText) => {
+    const res = await fetch(`https://openapi.programming-hero.com/api/retro-forum/posts?category=${searchText}`);
+    // 
+    const data = await res.json();
+    const posts = data.posts;
+    // console.log(posts)
+    displayPost(posts)
+}
+
+const loadtext = async () => {
     const response = await fetch('https://openapi.programming-hero.com/api/retro-forum/latest-posts');
     const cards = await response.json();
     // console.log(cards)
@@ -13,14 +26,15 @@ const loadData = async () => {
 const displayPost = (posts) => {
 
     const postContainer = document.getElementById('Post-container');
+    postContainer.textContent = '';
 
     posts.forEach(post => {
-        // console.log(post)
+        console.log(post)
         const postCard = document.createElement('div');
-        postCard.classList = `card w-3/4 bg-[#797DFC1A] shadow-xl my-4`;
+        postCard.classList = `card  bg-[#797DFC1A] shadow-xl my-4`;
         postCard.innerHTML = `
         <div class=" lg:flex gap-2 px-12 py-10">
-            <div class="avatar">
+            <div class="avatar online">
                 <div class="w-24 h-24 rounded-full">
                     <img src="${post.image}" />
                 </div>
@@ -51,7 +65,7 @@ const displayPost = (posts) => {
                         </div>
                     </div>
                     <div>
-                        <button class="btn btn-circle border-none">
+                        <button onclick="handleShowDetails()" class="btn btn-circle border-none">
                         <img src="./images/Group 40106.png" alt="">
                         </button>
                     </div>
@@ -62,14 +76,22 @@ const displayPost = (posts) => {
         `;
         postContainer.appendChild(postCard);
     });
+    toggleLoadingSpiner(false);
 }
+
+// const handleShowDetails = () => {
+//     // console.log('show data')
+//     const divWrapper = document.createElement('div');
+//     divWrapper.style.display = 'flex';
+//     divWrapper.style.justifyContent = 'space-between';
+// }
 
 const displayCard = (cards) => {
     // console.log(cards)
     const cardContainer = document.getElementById('card-container');
 
     cards.forEach(key => {
-        console.log(key)
+        // console.log(key)
         const cardSlort = document.createElement('div');
         cardSlort.classList = `card-body bg-[#797DFC1A] shadow-xl rounded-3xl`;
         cardSlort.innerHTML = `
@@ -80,7 +102,7 @@ const displayCard = (cards) => {
             </div>
             <div class="flex gap-2 my-5">
                 <img src="./images/boxx.svg" alt="">
-                <p>${key.author.posted_date}</p>
+                <p>${key.author.posted_date ? key.author.posted_date : 'no date publish'}</p>
             </div>
             <div class="">
                 <h2 class="card-title mb-2">${key.title}</h2>
@@ -93,7 +115,7 @@ const displayCard = (cards) => {
                     </div>
                     <div>
                         <h1 class="font-bold">${key.author.name}</h1>
-                        <p>${key.author.designation}</p>
+                        <p>${key.author.designation ? key.author.designation : 'unknown'}</p>
                     </div>
                 </div>
             </div>
@@ -103,8 +125,29 @@ const displayCard = (cards) => {
     })
 }
 
+// handle search button
+const handleSearch = () => {
+    toggleLoadingSpiner(true);
+    const searchField = document.getElementById('search-field');
+    const searchText = searchField.value;
+    // console.log(searchText)
+    // loadData();
+    reloadData(searchText)
+}
+
+const toggleLoadingSpiner = (isLoding) => {
+    const loadingSpiner = document.getElementById('loading-spiner');
+    if (isLoding) {
+        loadingSpiner.classList.remove('hidden');
+    }
+    else {
+        loadingSpiner.classList.add('hidden');
+    }
+}
+
 
 
 
 
 loadData()
+loadtext()

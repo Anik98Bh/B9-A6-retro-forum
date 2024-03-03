@@ -85,12 +85,14 @@
                             <p class="mb-5">Share your favorite opinion and win and wp <br> forum coffee mug!</p>
                             <div class="w-96">
                                 <label class="input flex items-center  gap-2 rounded-3xl">
-                                    <input type="text" class="grow " placeholder="Search" />
-                                    <button class="badge bg-[#797DFC] p-5 text-white font-semibold">Search</button>
+                                    <input id="search-field" type="text" class="grow text-black"
+                                        placeholder="Search here anything" />
+                                    <button onclick="handleSearch()"
+                                        class="badge bg-[#797DFC] p-5 text-white font-semibold">Search</button>
                                 </label>
                             </div>
                         </div>
-                        <div class="bg-[#ffffff] rounded-3xl p-6 space-y-4">
+                        <div class="bg-[#FFFFFF] rounded-3xl p-6 space-y-4">
                             <div class="flex justify-between font-medium text-xl text-[#12132D] gap-6">
                                 <p>Registered Users</p>
                                 <p>01</p>
@@ -116,13 +118,24 @@
     <main class="mt-20">
         <!-- Lets Discuss part -->
         <section>
-            <div class="text-center">
+            <div class="text-center mb-6">
                 <h1 class="text-[#12132D] font-bold text-4xl">Let’s Discuss</h1>
                 <p class="text-[#12132D99] mt-4">Yes, you can run unit tests and view the results directly within the
                     app. The <br> integrated testing features allow for a streamlined .</p>
             </div>
-            <div id="Post-container">
+            <div id="loading-spiner" class="text-center my-20 hidden">
+                <span class="loading loading-bars loading-lg"></span>
+            </div>
+            <div class="flex gap-10">
+                <div id="Post-container" class="grid lg:grid-rows-1 w-3/4">
 
+                </div>
+                <div class="h-72 bg-[#12132D0D] p-7 rounded-3xl">
+                    <div id="" class="flex justify-between gap-24 font-bold">
+                        <h1>Title</h1>
+                        <h1>Mark as read (0)</h1>
+                    </div>
+                </div>
             </div>
         </section>
         <!-- Join Our Forum -->
