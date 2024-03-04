@@ -1,15 +1,21 @@
 const loadData = async () => {
     const res = await fetch(`https://openapi.programming-hero.com/api/retro-forum/posts`);
-    // 
     const data = await res.json();
     const posts = data.posts;
     // console.log(posts)
     displayPost(posts)
 }
+const showDetails = async (id) => {
+    const res = await fetch(`https://openapi.programming-hero.com/api/retro-forum/posts`);
+    const data = await res.json();
+    const posts = data.posts;
+    const singlePost = posts.find(i => i.id === id);
+    displayTitle(singlePost)
+    // console.log(singlePost)
+}
 
 const reloadData = async (searchText) => {
     const res = await fetch(`https://openapi.programming-hero.com/api/retro-forum/posts?category=${searchText}`);
-    // 
     const data = await res.json();
     const posts = data.posts;
     // console.log(posts)
@@ -29,22 +35,24 @@ const displayPost = (posts) => {
     postContainer.textContent = '';
 
     posts.forEach(post => {
-        console.log(post)
+        // console.log(post)
         const postCard = document.createElement('div');
         postCard.classList = `card  bg-[#797DFC1A] shadow-xl my-4`;
         postCard.innerHTML = `
-        <div class=" lg:flex gap-2 px-12 py-10">
-            <div class="avatar online">
-                <div class="w-24 h-24 rounded-full">
-                    <img src="${post.image}" />
+        <div class="lg:flex gap-2 px-12 py-10">
+            <div>
+                <div class="avatar w-20 h-20">
+                <span class="relative left-20 indicator-item badge ${post.isActive ? 'bg-green-500' : 'bg-red-500'}"></span>
+                    <img class="rounded-2xl" src="${post.image}" />
                 </div>
             </div>
             <div class="card-body">
-                <div class="flex font-medium">
+                <div class="sm:grid grid-rows-1 lg:flex font-medium">
                     <p># ${post.category}</p>
                     <p>Author : ${post.author.name}</p>
                 </div>
-                <h2 class="card-title">${post.title}</h2>
+                <div></div>
+                <h2 id="title-post" class="card-title">${post.title}</h2>
                 <p>${post.description}</p>
 
                 <hr class=" border-dashed bg-[#12132D] my-5">
@@ -65,7 +73,7 @@ const displayPost = (posts) => {
                         </div>
                     </div>
                     <div>
-                        <button onclick="handleShowDetails()" class="btn btn-circle border-none">
+                        <button onclick="handleShowDetails(${post.id})" class="btn btn-circle border-none">
                         <img src="./images/Group 40106.png" alt="">
                         </button>
                     </div>
@@ -79,12 +87,30 @@ const displayPost = (posts) => {
     toggleLoadingSpiner(false);
 }
 
-// const handleShowDetails = () => {
-//     // console.log('show data')
-//     const divWrapper = document.createElement('div');
-//     divWrapper.style.display = 'flex';
-//     divWrapper.style.justifyContent = 'space-between';
-// }
+const countTotal=document.getElementById('count');
+    let totalCount= 0;
+const handleShowDetails = (id) => {
+    // console.log('show data', tl)
+    totalCount++;
+    countTotal.textContent=totalCount;
+    showDetails(id)
+}
+
+const displayTitle=(singlePost)=>{
+    // console.log(singlePost)
+    const showData=document.getElementById('show-data');
+    const titleCard = document.createElement('div');
+    titleCard.innerHTML=`
+            <div class="flex gap-3 justify-between my-5 bg-[#FFFFFF] rounded-2xl p-4">
+                <p class="text-wrap">${singlePost.title}</p>
+                <div class="flex items-center gap-2">
+                    <img src="./images/Group 16.svg" alt="">
+                    <p>${singlePost.view_count}</p>
+                </div>
+            </div>
+            `;
+        showData.appendChild(titleCard);
+}
 
 const displayCard = (cards) => {
     // console.log(cards)
@@ -102,7 +128,7 @@ const displayCard = (cards) => {
             </div>
             <div class="flex gap-2 my-5">
                 <img src="./images/boxx.svg" alt="">
-                <p>${key.author.posted_date ? key.author.posted_date : 'no date publish'}</p>
+                <p>${key.author.posted_date ? key.author.posted_date : 'No Publish Date'}</p>
             </div>
             <div class="">
                 <h2 class="card-title mb-2">${key.title}</h2>
@@ -115,7 +141,7 @@ const displayCard = (cards) => {
                     </div>
                     <div>
                         <h1 class="font-bold">${key.author.name}</h1>
-                        <p>${key.author.designation ? key.author.designation : 'unknown'}</p>
+                        <p>${key.author.designation ? key.author.designation : 'Unknown'}</p>
                     </div>
                 </div>
             </div>
@@ -130,8 +156,6 @@ const handleSearch = () => {
     toggleLoadingSpiner(true);
     const searchField = document.getElementById('search-field');
     const searchText = searchField.value;
-    // console.log(searchText)
-    // loadData();
     reloadData(searchText)
 }
 
@@ -143,6 +167,9 @@ const toggleLoadingSpiner = (isLoding) => {
     else {
         loadingSpiner.classList.add('hidden');
     }
+    setTimeout(() => {
+        loadingSpiner
+    }, 2000);
 }
 
 

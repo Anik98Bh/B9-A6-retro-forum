@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Retro-Forum</title>
+    <title>Petrics-Forum</title>
     <link href="https://cdn.jsdelivr.net/npm/daisyui@4.7.2/dist/full.min.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.tailwindcss.com"></script>
 
@@ -40,7 +40,7 @@
                             </button>
                         </ul>
                     </div>
-                    <img src="./images/logo.png" alt="">
+                    <a class="btn btn-ghost text-4xl font-bold bg-none">PeTrics</a>
                 </div>
                 <div class="flex navbar-end gap-3">
                     <div class=" hidden lg:flex">
@@ -75,12 +75,12 @@
         </div>
         <!-- banner part -->
         <div class="mt-5">
-            <div class="hero min-h-96 bg-[#12132D] rounded-3xl" style="background-image: url(./images/bgbanner.png);">
+            <div class="hero lg:h-[500px] bg-[#12132D] rounded-3xl" style="background-image: url(./images/bgbanner.png);">
                 <div class="hero- bg-opacity-15"></div>
                 <div class="hero-content text-center text-neutral-content">
-                    <div class=" grid grid-rows-1 lg:flex lg:space-x-14">
+                    <div class=" grid grid-rows-1 gap-4 lg:flex lg:space-x-14">
                         <div class="max-w-md text-start">
-                            <h1 class="mb-5 text-5xl font-bold">Welcome to the <span class="text-[#797DFC]">ReTro</span>
+                            <h1 class="mb-5 text-5xl font-bold">Welcome to the <span class="text-[#797DFC]">PeTrics</span>
                                 Forum</h1>
                             <p class="mb-5">Share your favorite opinion and win and wp <br> forum coffee mug!</p>
                             <div class="w-96">
@@ -92,7 +92,7 @@
                                 </label>
                             </div>
                         </div>
-                        <div class="bg-[#FFFFFF] rounded-3xl p-6 space-y-4">
+                        <div class="bg-[#FFFFFF] rounded-3xl p-6    space-y-4 md:mt-4">
                             <div class="flex justify-between font-medium text-xl text-[#12132D] gap-6">
                                 <p>Registered Users</p>
                                 <p>01</p>
@@ -126,14 +126,17 @@
             <div id="loading-spiner" class="text-center my-20 hidden">
                 <span class="loading loading-bars loading-lg"></span>
             </div>
-            <div class="flex gap-10">
-                <div id="Post-container" class="grid lg:grid-rows-1 w-3/4">
+            <div class="grid grid-rows-1 lg:flex gap-10">
+                <div id="Post-container" class="grid w-full lg:grid-rows-1 lg:w-3/4">
 
                 </div>
-                <div class="h-72 bg-[#12132D0D] p-7 rounded-3xl">
+                <div class="h-full mt-3 w-full lg:w-[430px] bg-[#12132D0D] p-7 rounded-3xl">
                     <div id="" class="flex justify-between gap-24 font-bold">
                         <h1>Title</h1>
-                        <h1>Mark as read (0)</h1>
+                        <h1>Mark as read  (<span id="count">0</span>)</h1>
+                    </div>
+                    <div id="show-data">
+
                     </div>
                 </div>
             </div>
@@ -175,7 +178,7 @@
     <!-- footer sec -->
     <footer class="footer footer-center p-32 bg-[#30325E1A] mt-20">
         <div class="space-y-6">
-            <img src="./images/logo.png" alt="">
+            <h1 class="text-4xl font-bold bg-none">PeTrics</h1>
             <p class="">
                 Out of hundreds of submissions, they’ve curated more than 60 footer designs so far with more to come.
                 Some are clever, like the footer for Rows,<br> a spreadsheet editor, which organizes its links in a
